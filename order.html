@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .img {
+            height: 200px;
+        }
+
+        .payment-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .payment-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .transaction-id {
+            margin-top: 15px;
+        }
+
+        .transaction-id input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .payment-instructions {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Jyothi's Spice Emporium</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="index.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <center>
+            <h2 style="color: black;">Order Details</h2>
+            <form id="order-form" onsubmit="return false;">
+                <fieldset class="fieldset">
+                    <label for="customerName">Full Name:</label><br>
+                    <input type="text" id="customerName" name="customerName" required><br><br>
+
+                    <label for="customerEmail">Email Address:</label><br>
+                    <input type="email" id="customerEmail" name="customerEmail" required><br><br>
+
+                    <label for="customerPhone">Phone Number:</label><br>
+                    <input type="tel" id="customerPhone" name="customerPhone" required><br><br>
+
+                    <label for="address">Delivery Address:</label><br>
+                    <textarea id="address" name="address" rows="4" required></textarea><br><br>
+
+                    <div id="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="order-items"></div>
+                        <p><strong>Total: ₹<span id="order-total">0.00</span></strong></p>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="payment-section">
+                        <h3>Payment Details</h3>
+                        <div class="payment-instructions">
+                            <strong>Payment Instructions:</strong><br>
+                            1. Scan the QR code below to make payment<br>
+                            2. Complete the payment using UPI or any digital payment method<br>
+                            3. Note down the transaction ID from your payment app<br>
+                            4. Check the payment confirmation box below<br>
+                            5. Enter the transaction ID<br>
+                            6. Click "Confirm Order" to complete your purchase
+                        </div>
+
+                        <label for="payment">Payment QR Code:</label><br>
+                        <img src="pay.png" alt="Payment QR Code" class="img"><br><br>
+
+                        <div class="payment-status">
+                            <input type="checkbox" id="paymentConfirmed" name="paymentConfirmed">
+                            <label for="paymentConfirmed">I have completed the payment</label>
+                        </div>
+
+                        <div class="transaction-id">
+                            <label for="transactionId">Transaction ID (from payment app):</label><br>
+                            <input type="text" id="transactionId" name="transactionId"
+                                placeholder="Enter transaction ID from your payment app" required>
+                            <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">
+                                Each transaction ID can only be used once. If you get an error, please use a
+                                different transaction ID from your payment app.
+                            </small>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="confirmOrder()" id="confirm-btn">Confirm Order</button>
+                    <div id="order-status"></div>
+                </fieldset>
+        </center>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jyothi's Spice Emporium</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

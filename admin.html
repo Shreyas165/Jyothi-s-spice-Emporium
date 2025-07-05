@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Jyothi's Spice Emporium</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .order-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .order-id {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .order-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .customer-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-group {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .info-value {
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .order-items {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .total-amount {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c5aa0;
+            text-align: right;
+        }
+
+        .refresh-btn {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .refresh-btn:hover {
+            background: #1e3f6b;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Tab Styles */
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            background: #f8f9fa;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #2c5aa0;
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #e9ecef;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Contact Card Styles */
+        .contact-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-id {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .contact-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-message {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Jyothi's Spice Emporium - Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="index.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <h2>Admin Dashboard</h2>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('orders')">📦 Orders</button>
+            <button class="tab-btn" onclick="showTab('contacts')">📧 Contact Messages</button>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders-tab" class="tab-content active">
+            <h3>Order Management</h3>
+            <button class="refresh-btn" onclick="loadOrders()">🔄 Refresh Orders</button>
+            <div id="orders-container">
+                <div class="loading">Loading orders...</div>
+            </div>
+        </div>
+
+        <!-- Contacts Tab -->
+        <div id="contacts-tab" class="tab-content">
+            <h3>Contact Messages</h3>
+            <button class="refresh-btn" onclick="loadContacts()">🔄 Refresh Contacts</button>
+            <div id="contacts-container">
+                <div class="loading">Loading contact messages...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jyothi's Spice Emporium</p>
+    </footer>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrders();
+        });
+
+        function showTab(tabName) {
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName + '-tab').classList.add('active');
+
+            event.target.classList.add('active');
+
+            if (tabName === 'orders') {
+                loadOrders();
+            } else if (tabName === 'contacts') {
+                loadContacts();
+            }
+        }
+
+        function loadOrders() {
+            const container = document.getElementById('orders-container');
+            container.innerHTML = '<div class="loading">Loading orders...</div>';
+
+            fetch('/api/orders')
+                .then(response => response.json())
+                .then(orders => {
+                    if (orders.length === 0) {
+                        container.innerHTML = '<div class="loading">No orders found</div>';
+                        return;
+                    }
+
+                    container.innerHTML = '';
+                    orders.forEach(order => {
+                        const orderCard = createOrderCard(order);
+                        container.appendChild(orderCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading orders:', error);
+                    container.innerHTML = '<div class="error">Failed to load orders. Please try again.</div>';
+                });
+        }
+
+        function loadContacts() {
+            const container = document.getElementById('contacts-container');
+            container.innerHTML = '<div class="loading">Loading contact messages...</div>';
+
+            fetch('/api/contacts')
+                .then(response => response.json())
+                .then(contacts => {
+                    if (contacts.length === 0) {
+                        container.innerHTML = '<div class="loading">No contact messages found</div>';
+                        return;
+                    }
+
+                    container.innerHTML = '';
+                    contacts.forEach(contact => {
+                        const contactCard = createContactCard(contact);
+                        container.appendChild(contactCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading contacts:', error);
+                    container.innerHTML = '<div class="error">Failed to load contact messages. Please try again.</div>';
+                });
+        }
+
+        function createContactCard(contact) {
+            const card = document.createElement('div');
+            card.className = 'contact-card';
+
+            card.innerHTML = `
+                <div class="contact-header">
+                    <span class="contact-id">Contact #${contact.id}</span>
+                    <span class="contact-date">${new Date(contact.submission_date).toLocaleString()}</span>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="info-group">
+                        <div class="info-label">Name</div>
+                        <div class="info-value">${contact.name}</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">${contact.email}</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Country</div>
+                        <div class="info-value">${contact.country}</div>
+                    </div>
+                </div>
+                
+                <div class="contact-message">
+                    <div class="info-label">Message</div>
+                    <div class="info-value">${contact.message}</div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        function createOrderCard(order) {
+            const card = document.createElement('div');
+            card.className = 'order-card';
+
+            const orderItems = JSON.parse(order.order_items);
+            const itemsHtml = orderItems.map(item =>
+                `<div class="item">
+                    <span>${item.name}</span>
+                    <span>₹${item.price} x ${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}</span>
+                </div>`
+            ).join('');
+
+            // Payment status display
+            const paymentStatus = order.payment_confirmed ?
+                '<span style="color: green; font-weight: bold;">✅ PAID</span>' :
+                '<span style="color: red; font-weight: bold;">❌ PENDING</span>';
+
+            const transactionId = order.transaction_id ?
+                `<div class="info-group">
+                    <div class="info-label">Transaction ID</div>
+                    <div class="info-value">${order.transaction_id}</div>
+                </div>` : '';
+
+            card.innerHTML = `
+                <div class="order-header">
+                    <span class="order-id">Order #${order.id}</span>
+                    <span class="order-date">${new Date(order.order_date).toLocaleString()}</span>
+                </div>
+                
+                <div class="customer-info">
+                    <div class="info-group">
+                        <div class="info-label">Customer Name</div>
+                        <div class="info-value">${order.customer_name}</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">${order.customer_email}</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Phone</div>
+                        <div class="info-value">${order.customer_phone}</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label">Status</div>
+                        <div class="info-value">${order.status}</div>
+                    </div>
+                </div>
+                
+                <div class="customer-info">
+                    <div class="info-group">
+                        <div class="info-label">Payment Status</div>
+                        <div class="info-value">${paymentStatus}</div>
+                    </div>
+                    ${transactionId}
+                </div>
+                
+                <div class="info-group">
+                    <div class="info-label">Delivery Address</div>
+                    <div class="info-value">${order.delivery_address}</div>
+                </div>
+                
+                <div class="order-items">
+                    <div class="info-label">Order Items</div>
+                    ${itemsHtml}
+                </div>
+                
+                <div class="total-amount">
+                    Total: ₹${parseFloat(order.total_amount).toFixed(2)}
+                </div>
+            `;
+
+            return card;
+        }
+    </script>
+</body>
+
+</html>

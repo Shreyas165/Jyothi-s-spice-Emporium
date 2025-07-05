@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page active">
+        <header>
+            <h1>Jyothi's Spice Emporium</h1>
+           <nav>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="index.html">Products</a></li>
+                    <li><a href="cart.html" class="active">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+    <main>
+        <center>
+        <fieldset class="f1">
+        <h2 style="color: black;">Shopping Cart</h2>
+        <ul id="cart-items">
+        </ul>
+        <p>Total: <span id="total">0.00</span></p>
+        <button id="clear-cart" onclick="clearCart()">Clear Cart</button>
+        <button onclick="placeOrder()">Place Order</button>
+    </fieldset>
+</center>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Jyothi's Spice Emporium</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
