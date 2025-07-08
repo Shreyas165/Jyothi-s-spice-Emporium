@@ -72,61 +72,64 @@
                 <img src="pay.png" alt="Payment QR Code" class="img" />
             </div>
         </section>
-        <form class="contact-form" id="order-form" onsubmit="return false;">
-            <div class="form-group">
-                <label for="customerName">Full Name:</label>
-                <input type="text" id="customerName" name="customerName" required>
-            </div>
-            <div class="form-group">
-                <label for="customerEmail">Email Address:</label>
-                <input type="email" id="customerEmail" name="customerEmail" required>
-            </div>
-            <div class="form-group">
-                <label for="customerPhone">Phone Number:</label>
-                <input type="tel" id="customerPhone" name="customerPhone" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Delivery Address:</label>
-                <textarea id="address" name="address" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <div id="order-summary">
-                    <h3>Order Summary</h3>
-                    <div id="order-items"></div>
-                    <p><strong>Total: ₹<span id="order-total">0.00</span></strong></p>
+        <div style="display: flex; justify-content: center; align-items: flex-start; min-height: 0;">
+            <form class="contact-form" id="order-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="customerName">Full Name:</label>
+                    <input type="text" id="customerName" name="customerName" required>
                 </div>
-            </div>
-            <div class="form-group payment-section" style="background:rgba(255,255,255,0.15);border:1px solid #fff;">
-                <h3>Payment Details</h3>
-                <div class="payment-instructions"
-                    style="background:rgba(255,255,255,0.10);color:#fff;border:1px solid #fff;">
-                    <strong>Payment Instructions:</strong><br>
-                    1. Scan the QR code above to make payment<br>
-                    2. Complete the payment using UPI or any digital payment method<br>
-                    3. Note down the transaction ID from your payment app<br>
-                    4. Check the payment confirmation box below<br>
-                    5. Enter the transaction ID<br>
-                    6. Click "Confirm Order" to complete your purchase
+                <div class="form-group">
+                    <label for="customerEmail">Email Address:</label>
+                    <input type="email" id="customerEmail" name="customerEmail" required>
                 </div>
-                <div class="payment-status">
-                    <input type="checkbox" id="paymentConfirmed" name="paymentConfirmed">
-                    <label for="paymentConfirmed">I have completed the payment</label>
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number:</label>
+                    <input type="tel" id="customerPhone" name="customerPhone" required>
                 </div>
-                <div class="transaction-id">
-                    <label for="transactionId">Transaction ID (from payment app):</label>
-                    <input type="text" id="transactionId" name="transactionId"
-                        placeholder="Enter transaction ID from your payment app" required>
-                    <small style="color: #fff; font-size: 12px; display: block; margin-top: 5px;">
-                        Each transaction ID can only be used once. If you get an error, please use a different
-                        transaction ID from your payment app.
-                    </small>
+                <div class="form-group">
+                    <label for="address">Delivery Address:</label>
+                    <textarea id="address" name="address" rows="4" required></textarea>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="confirmOrder()" id="confirm-btn">Confirm Order</button>
-            </div>
-            <div id="order-status"></div>
-        </form>
+                <div class="form-group">
+                    <div id="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="order-items"></div>
+                        <p><strong>Total: ₹<span id="order-total">0.00</span></strong></p>
+                    </div>
+                </div>
+                <div class="form-group payment-section"
+                    style="background:rgba(255,255,255,0.15);border:1px solid #fff;">
+                    <h3>Payment Details</h3>
+                    <div class="payment-instructions"
+                        style="background:rgba(255,255,255,0.10);color:#fff;border:1px solid #fff;">
+                        <strong>Payment Instructions:</strong><br>
+                        1. Scan the QR code above to make payment<br>
+                        2. Complete the payment using UPI or any digital payment method<br>
+                        3. Note down the transaction ID from your payment app<br>
+                        4. Check the payment confirmation box below<br>
+                        5. Enter the transaction ID<br>
+                        6. Click "Confirm Order" to complete your purchase
+                    </div>
+                    <div class="payment-status">
+                        <input type="checkbox" id="paymentConfirmed" name="paymentConfirmed">
+                        <label for="paymentConfirmed">I have completed the payment</label>
+                    </div>
+                    <div class="transaction-id">
+                        <label for="transactionId">Transaction ID (from payment app):</label>
+                        <input type="text" id="transactionId" name="transactionId"
+                            placeholder="Enter transaction ID from your payment app" required>
+                        <small style="color: #fff; font-size: 12px; display: block; margin-top: 5px;">
+                            Each transaction ID can only be used once. If you get an error, please use a different
+                            transaction ID from your payment app.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" onclick="confirmOrder()" id="confirm-btn">Confirm Order</button>
+                </div>
+                <div id="order-status"></div>
+            </form>
+        </div>
     </main>
 
     <footer class="dark-footer">
