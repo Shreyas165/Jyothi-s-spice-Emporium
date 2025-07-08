@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rasam Powder</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .product-detail {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .product-detail img {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-        }
-
-        .product-detail .details {
-            flex: 1;
-        }
-    </style>
 </head>
-<body>
-    <header>
-        <h1>Jyothi's Spice Emporium</h1>
-        <nav>
-            <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="index.html" class="active">Products</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
+<body class="dark-bg">
+    <header class="dark-header">
+        <div class="container">
+            <h1>Jyothi's Spice Emporium</h1>
+            <nav>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="index.html" class="active">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
-        <section class="product-detail">
-            <img src="rasam.png" alt="Rasam Powder">
-            <div class="details">
-                <h2 style="color: black;">Rasam Powder</h2>
-                <p>Price: ₹150.00</p>
-                <p>Weight: 200g</p>
-                <p style="text-align: justify;">Description: Homemade rasam powder in Udupi style captures the essence of coastal Karnataka's culinary heritage. It features a harmonious 
-                blend of roasted spices like coriander seeds, fenugreek, red chilies, and asafoetida, imbuing rasam with a distinct, aromatic flavor. 
-                This traditional recipe emphasizes freshness and quality, ensuring each spoonful of rasam is rich in both spice and nostalgia, making it a cherished 
-                addition to any meal in Udupi households.</p>
-               
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2><span class="accent">Rasam Powder</span></h2>
+                <p>Homemade rasam powder in Udupi style captures the essence of coastal Karnataka's culinary heritage. A
+                    harmonious blend of roasted spices like coriander seeds, fenugreek, red chilies, and asafoetida,
+                    imbuing rasam with a distinct, aromatic flavor.</p>
+                <div style="margin: 1.5rem 0;">
+                    <span class="cart-item-price" style="font-size:1.3rem;">₹170.00</span>
+                    <button class="cta-btn" style="margin-left: 1.2rem;"
+                        onclick="addToCart('Rasam Powder', 170.00); setProductQty('Rasam Powder');">Add to Cart</button>
+                    <span class="product-qty-badge" id="qty-Rasam Powder" style="margin-left:10px;"></span>
+                </div>
+                <p style="color:#ffb347;">Weight: 200g</p>
+            </div>
+            <div class="hero-image">
+                <img src="rasam.png" alt="Rasam Powder" />
             </div>
         </section>
     </main>
-
-    <footer>
+    <footer class="dark-footer">
         <p>&copy; 2024 Jyothi's Spice Emporium</p>
     </footer>
-
     <script src="scripts.js"></script>
 </body>
+
 </html>
