@@ -9,6 +9,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('order-items')) {
         displayOrderSummary();
     }
+
+    // Contact form submission handler
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const country = document.getElementById('country').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !country || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, country, message })
+                });
+                const result = await response.json();
+                if (response.ok && result.success) {
+                    alert(result.message || 'Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    alert(result.error || 'Failed to send message.');
+                }
+            } catch (err) {
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    }
 });
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
