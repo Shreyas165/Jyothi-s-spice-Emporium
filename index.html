@@ -1,59 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jyothi's Spice Emporium</title>
+    <title>Products - Jyothi's Spice Emporium</title>
     <link rel="stylesheet" href="styles.css">
-  
 </head>
-<body>
-    <div class="page active">
-    <header>
-        <h1>Jyothi's Spice Emporium</h1>
-      <center> <nav>
-            <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="index.html" class="active">Products</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
+<body class="dark-bg">
+    <header class="dark-header">
+        <div class="container">
+            <h1>Jyothi's Spice Emporium</h1>
+            <nav>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="index.html" class="active">Products</a></li>
+                    <li><a href="cart.html" id="cart-count">Cart (0)</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Discover <span class="accent">Authentic Spices</span></h2>
+                <p>Browse our curated collection of homemade spice powders, crafted in the authentic Udupi style. Add
+                    your favorites to the cart and bring home the taste of tradition!</p>
+            </div>
+            <div class="hero-image">
+                <img src="sambar.png" alt="Spice Selection" />
+            </div>
+        </section>
         <section class="products">
+            <!-- Existing product cards remain unchanged -->
             <div class="product">
-                <a href="rasam.html"><img src="rasam.png" alt="Rasam Powder"></a>
-                <h2 style="color: black;">Rasam <br>Powder</h2>
-                <button onclick="addToCart('Rasam Powder', 150.00)">Add to Cart</button>
+                <a href="rasam.html"><img src="Rasam.png" alt="Rasam Powder"></a>
+                <h2 style="color: #fff;">Rasam <br>Powder</h2>
+                <button onclick="addToCart('Rasam Powder', 170.00);">Add to Cart</button>
+                <span class="product-qty-badge" id="qty-Rasam Powder"></span>
             </div>
             <div class="product">
                 <a href="vangibath1.html"><img src="vangibath.png" alt="Vangibath Powder"></a>
-                <h2 style="color: black;">Vangibath Powder</h2>
-                <button onclick="addToCart('Vangibath Powder', 150.00)">Add to Cart</button>
+                <h2 style="color: #fff;">Vangibath <br> Powder</h2>
+                <button onclick="addToCart('Vangibath Powder', 170.00);">Add to Cart</button>
+                <span class="product-qty-badge" id="qty-Vangibath Powder"></span>
             </div>
             <div class="product">
                 <a href="sambar.html"><img src="sambar.png" alt="sambar Powder"></a>
-                <h2 style="color: black;">Sambar <br>Powder</h2>
-                <button onclick="addToCart('Sambar Powder', 150.00)">Add to Cart</button>
+                <h2 style="color: #fff;">Sambar <br>Powder</h2>
+                <button onclick="addToCart('Sambar Powder', 170.00);">Add to Cart</button>
+                <span class="product-qty-badge" id="qty-Sambar Powder"></span>
             </div>
             <div class="product">
-                <a href="kashaya.html"><img src="Kashaya.png" alt="kashaya Powder"></a>
-                <h2 style="color: black;">Kashaya <br>Powder</h2>
-                <button onclick="addToCart('Kashaya Powder', 150.00)">Add to Cart</button>
+                <a href="kashaya.html"><img src="kashaya.png" alt="kashaya Powder"></a>
+                <h2 style="color: #fff;">Kashaya <br>Powder</h2>
+                <button onclick="addToCart('Kashaya Powder', 170.00);">Add to Cart</button>
+                <span class="product-qty-badge" id="qty-Kashaya Powder"></span>
             </div>
             <div class="product">
                 <a href="chutney.html"><img src="chutney.jpg" alt="chutney Powder"></a>
-                <h2 style="color: black;">Chutney <br>Powder</h2>
-                <button onclick="addToCart('Chutney Powder', 150.00)">Add to Cart</button>
+                <h2 style="color: #fff;">Chutney <br>Powder</h2>
+                <button onclick="addToCart('Chutney Powder', 170.00);">Add to Cart</button>
+                <span class="product-qty-badge" id="qty-Chutney Powder"></span>
             </div>
         </section>
     </main>
-    <footer>
+    <footer class="dark-footer">
         <p>&copy; 2024 Jyothi's Spice Emporium</p>
     </footer>
-</div>
     <script src="scripts.js"></script>
 </body>
+
 </html>
