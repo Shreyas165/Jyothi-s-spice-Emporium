@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vangibath Powder</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .product-detail {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .product-detail img {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-        }
-
-        .product-detail .details {
-            flex: 1;
-        }
-    </style>
 </head>
-<body>
-    <header>
-        <h1>Jyothi's Spice Emporium</h1>
-        <nav>
-            <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="index.html" class="active"s>Products</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
+<body class="dark-bg">
+    <header class="dark-header">
+        <div class="container">
+            <h1>Jyothi's Spice Emporium</h1>
+            <nav>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="index.html" class="active">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
-        <section class="product-detail">
-            <img src="vangibath.png" alt="Vangibath Powder">
-            <div class="details">
-                <h2 style="color: black;">Vangibath Powder</h2>
-                <p>Price: ₹150.00</p>
-                <p>Weight: 200g</p>
-                <p>Description: Udupi vangibath Powder is a </p>
-               
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2><span class="accent">Vangibath Powder</span></h2>
+                <p>Udupi Vangibath Powder is a traditional blend of roasted spices, perfect for making the classic South
+                    Indian rice dish. Enjoy the authentic taste of Karnataka in every bite!</p>
+                <div style="margin: 1.5rem 0;">
+                    <span class="cart-item-price" style="font-size:1.3rem;">₹170.00</span>
+                    <button class="cta-btn" style="margin-left: 1.2rem;"
+                        onclick="addToCart('Vangibath Powder', 170.00); setProductQty('Vangibath Powder');">Add to
+                        Cart</button>
+                    <span class="product-qty-badge" id="qty-Vangibath Powder" style="margin-left:10px;"></span>
+                </div>
+                <p style="color:#ffb347;">Weight: 200g</p>
+            </div>
+            <div class="hero-image">
+                <img src="vangibath.png" alt="Vangibath Powder" />
             </div>
         </section>
     </main>
-
-    <footer>
+    <footer class="dark-footer">
         <p>&copy; 2024 Jyothi's Spice Emporium</p>
     </footer>
-
     <script src="scripts.js"></script>
+    <script>
+        function getProductQty(name) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(i => i.name === name);
+            return item ? item.quantity : 0;
+        }
+        function setProductQty(name) {
+            document.getElementById('qty-' + name).textContent = getProductQty(name);
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            setProductQty('Vangibath Powder');
+        });
+    </script>
 </body>
+
 </html>
